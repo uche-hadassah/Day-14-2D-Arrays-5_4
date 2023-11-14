@@ -19,7 +19,7 @@ double average(double[], int);
 int main()
 {
 	int grade[ROW][COL] = { 77,68,86,73,96,87,89,78,70,90,86,81 };//hardcoded the grades
-	double sum[ROW];
+	double total[ROW];
 	int Option;
 	//Display the grades for each student
 	for (int i = 0; i < ROW; i++)
@@ -51,15 +51,15 @@ int main()
 		{
 			for (int i = 0; i < ROW; i++)//initialize all elements to 0.0
 			{
-				sum[i] = 0.0;
+				total[i] = 0.0;
 			}
 			for (int i = 0; i < 3; i++)
 			{
 				for (int j = 0; j < 4; j++)
 				{
-					sum[i] += grade[i][j];//adds to the sum for student i
+					total[i] += grade[i][j];//adds to the sum for student i
 				}
-				cout << "\nThe average grade of student " << i << " is " << average(sum, ROW);
+				cout << "\nThe average grade of student " << i << " is " << average(total, ROW);
 			}
 		}
 		else
@@ -68,9 +68,6 @@ int main()
 			break;
 		}
 	} while (Option > 0 && Option < 4);
-
-	
-	
 }
 
 int minimum(int grades[][COL], int row, int col)
@@ -107,10 +104,11 @@ int maximum(int grades[][COL], int row, int col)
 
 double average(double sum[], int size)
 {
-	double avg;
-	for(int i = 0;i< size;i++)
+	double avg = 0.0; // Initialize avg to 0.0
+	for (int i = 0; i < size; i++)
 	{
-		avg = sum[i] / 4;
+		avg = sum[i]; // Sum all elements in the array
 	}
+	avg /= size; // Calculate the average
 	return avg;
 }
