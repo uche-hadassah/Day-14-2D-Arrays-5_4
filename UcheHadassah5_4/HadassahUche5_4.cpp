@@ -18,43 +18,59 @@ int maximum(int[][COL], int, int);
 double average(double[], int); 
 int main()
 {
-	int Option;
 	int grade[ROW][COL] = { 77,68,86,73,96,87,89,78,70,90,86,81 };//hardcoded the grades
-	cout << "\nMENU";
-	cout << "\n1) Lowest grade";
-	cout << "\n2) Highest grade";
-	cout << "\n3) Average of all students";
-	cout << "\nEnter an option:";
-	cin >> Option;
-	if (Option == 1)
-	{
-		cout << "\nThe Lowest Grade Is: " << minimum(grade, 3, 4);
-	}
-	else if (Option == 2)
-	{
-		cout << "\nThe Highest Grade Is: " << maximum(grade, 3, 4);
-	}
-	int highest = grade[0][0];//Set to the first element in the array
-	double sum[] = { 0.0,0.0,0.0 };//Created a 1-D array to store the sum of grades for each student and initialized it all to 0.0
-	for (int i = 0; i < 3; i++)
+	double sum[ROW];
+	int Option;
+	//Display the grades for each student
+	for (int i = 0; i < ROW; i++)
 	{
 		cout << "\nStudent " << i << " ";
-		for (int j = 0; j < 4; j++)
+		for (int j = 0; j < COL; j++)
 		{
-			sum[i] += grade[i][j];//adds to the sum for student i
 			cout << grade[i][j] << " ";
-			
-			else if (grade[i][j] > highest)
-			{
-				highest = grade[i][j];//Sets the highest grade
-			}
 		}
 	}
-	for (int k = 0; k < 3; k++)//Outputs the average for each student
+	
+	do
 	{
-		double avg = sum[k] / 4;
-		cout << "\nThe average grade of student " << k << " is " << avg;
-	}
+		cout << "\nMENU";
+		cout << "\n1) Lowest grade";
+		cout << "\n2) Highest grade";
+		cout << "\n3) Average of all students";
+		cout << "\nEnter an option:";
+		cin >> Option;
+		if (Option == 1)
+		{
+			cout << "\nThe Lowest Grade Is: " << minimum(grade, ROW, COL);
+		}
+		else if (Option == 2)
+		{
+			cout << "\nThe Highest Grade Is: " << maximum(grade, ROW, COL);
+		}
+		else if (Option == 3)
+		{
+			for (int i = 0; i < ROW; i++)//initialize all elements to 0.0
+			{
+				sum[i] = 0.0;
+			}
+			for (int i = 0; i < 3; i++)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					sum[i] += grade[i][j];//adds to the sum for student i
+				}
+				cout << "\nThe average grade of student " << i << " is " << average(sum, ROW);
+			}
+		}
+		else
+		{
+			cout << "invalid option!";
+			break;
+		}
+	} while (Option > 0 && Option < 4);
+
+	
+	
 }
 
 int minimum(int grades[][COL], int row, int col)
@@ -91,5 +107,10 @@ int maximum(int grades[][COL], int row, int col)
 
 double average(double sum[], int size)
 {
-	return 0.0;
+	double avg;
+	for(int i = 0;i< size;i++)
+	{
+		avg = sum[i] / 4;
+	}
+	return avg;
 }
