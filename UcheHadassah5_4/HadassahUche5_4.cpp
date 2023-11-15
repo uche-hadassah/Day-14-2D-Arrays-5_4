@@ -1,13 +1,8 @@
-/*Convert ex. 1 above so that your program uses functions to calculate the statistics 
-as follows: 
-a) Write a function called minimum that takes as parameters a twodimensional array 
-called grades and two integers for the number of rows and columns, and returns the minimum 
-element in the array. 
-b) Write a function called maximum that takes as parameters a 
-two-dimensional array called grades and two integers for the number of rows and columns, 
-and returns the maximum element in the array. 
-c) Write a function called average that takes as parameters a onedimensional array 
-and the array size as integer and returns the average*/
+/*Name:Uche Hadassah
+This program reads the grades of 4 subjects for 3 students and outputs the lowest grade, 
+highest grade and the average grade for each student. These statistics are calculated in 
+different functions
+*/
 #include<iostream>
 using namespace std;
 const int ROW = 3;
@@ -37,17 +32,23 @@ int main()
 		cout << "\n1) Lowest grade";
 		cout << "\n2) Highest grade";
 		cout << "\n3) Average of all students";
+		cout << "\n4)Exit";
 		cout << "\nEnter an option:";
 		cin >> Option;
-		if (Option == 1)
+		while (Option < 1 || Option > 4)//Continues while the option is out of bounds
+		{
+			cout << "Invalid option! Enter a valid number (from 1 to 3):";
+			cin >> Option;
+		}
+		if (Option == 1)//Outputs the lowest grade
 		{
 			cout << "\nThe Lowest Grade is: " << minimum(grade, ROW, COL);
 		}
-		else if (Option == 2)
+		else if (Option == 2)//Outputs the highest grade
 		{
 			cout << "\nThe Highest Grade is: " << maximum(grade, ROW, COL);
 		}
-		else if (Option == 3)
+		else if (Option == 3)//Outputs the average
 		{
 			for (int i = 0; i < ROW; i++)//initialize all elements to 0.0
 			{
@@ -59,17 +60,18 @@ int main()
 				{
 					total[i] += grade[i][j];//adds to the sum for student i
 				}
+				//I used i and not ROW so i can easily use it in the function
 				cout << "\nThe average grade of student " << i << " is " << average(total, i);
 			}
 		}
 		else
 		{
-			cout << "invalid option!";
+			cout << "\nThank you for your time^_^";
 			break;
 		}
-	} while (Option > 0 && Option < 4);
+	} while (Option > 0 && Option < 5);
 }
-
+//Computes the lowest grade
 int minimum(int grades[][COL], int row, int col)
 {
 	int min = grades[0][0];//Set to the first element in the array
@@ -83,9 +85,9 @@ int minimum(int grades[][COL], int row, int col)
 			}
 		}
 	}
-	return min;
+	return min;//return the lowest grade
 }
-
+//Computes the highest grade
 int maximum(int grades[][COL], int row, int col)
 {
 	int max = grades[0][0];//Set to the first element in the array
@@ -99,12 +101,12 @@ int maximum(int grades[][COL], int row, int col)
 			}
 		}
 	}
-	return max;
+	return max;//returns the highest grade
 }
 
+//Computes the average for each student
 double average(double sum[], int size)
 {
-	double avg;
-		avg = sum[size]/COL; // Sum all elements in the array
-	return avg;
+	double avg = sum[size]/COL; //calculates the average
+	return avg;//returns the average
 }
