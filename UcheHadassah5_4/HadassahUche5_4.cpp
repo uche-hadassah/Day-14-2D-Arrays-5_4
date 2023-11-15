@@ -57,9 +57,9 @@ int main()
 			{
 				for (int j = 0; j < COL; j++)
 				{
-					total[i] = grade[i][j];//adds to the sum for student i
+					total[i] += grade[i][j];//adds to the sum for student i
 				}
-				cout << "\nThe average grade of student " << i << " is " << average(total, ROW);
+				cout << "\nThe average grade of student " << i << " is " << average(total, i);
 			}
 		}
 		else
@@ -104,11 +104,7 @@ int maximum(int grades[][COL], int row, int col)
 
 double average(double sum[], int size)
 {
-	double avg; // Initialize avg to 0.0
-	for (int i = 0; i < size; i++)
-	{
-		double num = sum[i];
-		avg = num/size; // Sum all elements in the array
-	}
+	double avg;
+		avg = sum[size]/COL; // Sum all elements in the array
 	return avg;
 }
