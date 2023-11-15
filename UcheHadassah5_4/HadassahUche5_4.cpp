@@ -41,11 +41,11 @@ int main()
 		cin >> Option;
 		if (Option == 1)
 		{
-			cout << "\nThe Lowest Grade Is: " << minimum(grade, ROW, COL);
+			cout << "\nThe Lowest Grade is: " << minimum(grade, ROW, COL);
 		}
 		else if (Option == 2)
 		{
-			cout << "\nThe Highest Grade Is: " << maximum(grade, ROW, COL);
+			cout << "\nThe Highest Grade is: " << maximum(grade, ROW, COL);
 		}
 		else if (Option == 3)
 		{
@@ -53,11 +53,11 @@ int main()
 			{
 				total[i] = 0.0;
 			}
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < ROW; i++)
 			{
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < COL; j++)
 				{
-					total[i] += grade[i][j];//adds to the sum for student i
+					total[i] = grade[i][j];//adds to the sum for student i
 				}
 				cout << "\nThe average grade of student " << i << " is " << average(total, ROW);
 			}
@@ -104,11 +104,11 @@ int maximum(int grades[][COL], int row, int col)
 
 double average(double sum[], int size)
 {
-	double avg = 0.0; // Initialize avg to 0.0
+	double avg; // Initialize avg to 0.0
 	for (int i = 0; i < size; i++)
 	{
-		avg = sum[i]; // Sum all elements in the array
+		double num = sum[i];
+		avg = num/size; // Sum all elements in the array
 	}
-	avg /= size; // Calculate the average
 	return avg;
 }
